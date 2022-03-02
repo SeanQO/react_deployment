@@ -24,13 +24,32 @@ class HelloMessage extends React.Component {
 class Timer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { seconds: 0 };
+    this.state = { cicle: 59, cicleH: 23, seconds: 0, minutes: 0, hours: 0};
   }
 
   tick() {
-    this.setState(state => ({
-      seconds: state.seconds + 1
-    }));
+    if (this.state.seconds < this.state.cicle) {
+      this.setState(state => ({
+        seconds: state.seconds + 1,
+      }));
+    }else if(this.state.minutes < this.state.cicle){
+      this.setState(state => ({
+        seconds: 0,
+        minutes: state.minutes + 1
+      }));
+    }else if(this.state.hours < this.state.cicleH){
+      this.setState(state => ({
+        seconds: 0,
+        minutes: 0,
+        hours : state.hours + 1
+      }));
+    }else{
+      this.setState(state => ({
+        seconds: 0,
+        minutes: 0,
+        hours : 0
+      }));
+    }
   }
 
   componentDidMount() {
@@ -44,7 +63,7 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        Seconds: {this.state.seconds}
+        {this.state.hours} : {this.state.minutes} : {this.state.seconds}
       </div>
     );
   }
@@ -163,7 +182,7 @@ class Board extends React.Component {
     return (
       <div class="container">
         <div class="box">
-          <HelloMessage name="Taylor" />
+          <HelloMessage name="Sean Quintero O." />
         </div>
         <div class="box">
           <Timer />
