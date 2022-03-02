@@ -43,7 +43,7 @@ class Timer extends React.Component {
         minutes: 0,
         hours : state.hours + 1
       }));
-    }else{
+    }else{       
       this.setState(state => ({
         seconds: 0,
         minutes: 0,
@@ -68,6 +68,59 @@ class Timer extends React.Component {
     );
   }
 }
+
+/*
+	****************** TIMER 2  ******************
+*/
+
+class Timer2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { cicle: 9, cicleH: 23, seconds: 0, minutes: 0, hours: 0};
+  }
+
+  tick() {
+    if (this.state.seconds < this.state.cicle) {
+      this.setState(state => ({
+        seconds: state.seconds + 1,
+      }));
+    }else if(this.state.minutes < this.state.cicle){
+      this.setState(state => ({
+        seconds: 0,
+        minutes: state.minutes + 1
+      }));
+    }else if(this.state.hours < this.state.cicleH){
+      this.setState(state => ({
+        seconds: 0,
+        minutes: 0,
+        hours : state.hours + 1
+      }));
+    }else{       
+      this.setState(state => ({
+        seconds: 0,
+        minutes: 0,
+        hours : 0
+      }));
+    }
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.hours} : {this.state.minutes} : {this.state.seconds}
+      </div>
+    );
+  }
+}
+
 
 /*
 	****************** TODO APP ******************
@@ -186,6 +239,9 @@ class Board extends React.Component {
         </div>
         <div class="box">
           <Timer />
+        </div>
+        <div class="box">
+          <Timer2 />
         </div>
         <div class="box">
           <TodoApp />
