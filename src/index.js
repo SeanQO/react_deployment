@@ -132,6 +132,7 @@ class TodoApp extends React.Component {
     this.state = { items: [], text: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.sigma = ["A","B","C","D","E","F","g","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
   }
 
   render() {
@@ -149,7 +150,7 @@ class TodoApp extends React.Component {
             value={this.state.text}
           />
           <button>
-            Add #{this.state.items.length + 1}
+            Add task {this.sigma[this.state.items.length]}
           </button>
         </form>
       </div>
@@ -181,7 +182,7 @@ class TodoList extends React.Component {
     return (
       <ul>
         {this.props.items.map(item => (
-          <li key={item.id}>{item.text}</li>
+            <li key={item.id}>{item.text}</li>
         ))}
       </ul>
     );
