@@ -197,6 +197,11 @@ class MarkdownEditor extends React.Component {
   constructor(props) {
     super(props);
     this.md = new Remarkable();
+    this.md.set({
+      html: true,
+      breaks: true
+    });
+
     this.handleChange = this.handleChange.bind(this);
     this.state = { value: 'Hello, **world**!' };
   }
